@@ -1,6 +1,8 @@
 #include <iostream>
 #include <Windows.h>
 
+#include "Settings.h"
+
 static const char HOME[] = "\033[H";
 static const char CLEAR[] = "\033[2J";
 static const char INVISIBLE[] = "\033[?25l";
@@ -37,7 +39,7 @@ void SetCursorHome()
 }
 
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     ConfigConsole();
 
@@ -45,9 +47,11 @@ int main(int argc, char** argv)
     SetCursorVisible(false);
     SetCursorHome();
 
-    for (int i = 0; i < 20; ++i)
+    Settings settings(argc, argv);
+    
+    for (int i = 0; i < settings.GetWidth(); ++i)
     {
-        for (int j = 0; j < 100; ++j)
+        for (int j = 0; j < settings.GetHeight(); ++j)
         {
             std::cout << '.';
         }
