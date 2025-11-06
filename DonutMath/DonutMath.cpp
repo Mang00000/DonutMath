@@ -45,9 +45,17 @@ int main(int argc, char** argv)
     SetCursorVisible(false);
     SetCursorHome();
 
-    std::cout << "Hello World" << std::endl;
+    for (int i = 0; i < 20; ++i)
+    {
+        for (int j = 0; j < 100; ++j)
+        {
+            std::cout << '.';
+        }
+        std::cout << std::endl;
+    }
 
     SetCursorVisible(true);
+
     
     return 0;
 }
