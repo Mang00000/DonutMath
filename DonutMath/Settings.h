@@ -13,4 +13,6 @@ public:
     
     int GetHeight();
     int GetWidth();
+
+    char* GetPixels();
 };

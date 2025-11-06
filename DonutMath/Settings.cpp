@@ -5,6 +5,7 @@
 #include <string>
 
 
+
 Settings::Settings(int argc, char* argv[])
 {
     for (int i = 1; i < argc; i++)
@@ -29,6 +30,11 @@ Settings::Settings(int argc, char* argv[])
     }
     
     m_Pixels = new char[m_Width * m_Height];
+
+    for (int i = 0; i < m_Width * m_Height; i++)
+    {
+        m_Pixels[i] = '.';
+    }
 }
 
 int Settings::GetHeight()
@@ -39,4 +45,9 @@ int Settings::GetHeight()
 int Settings::GetWidth()
 {
     return m_Width;
+}
+
+char* Settings::GetPixels()
+{
+    return m_Pixels;
 }
