@@ -17,7 +17,8 @@ public:
     void HideCursor();
     void ShowCursor();
     void SetCursorHome();
-    
+
+    Settings GetSettings();
     
     void Display();
 };

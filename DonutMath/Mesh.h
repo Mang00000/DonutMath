@@ -1,5 +1,5 @@
 ﻿#pragma once
-
+#include <vector>
 
 struct VERTEX
 {
@@ -12,9 +12,12 @@ struct VERTEX
 
 class Mesh
 {
-    VERTEX* m_Vertices;
+    std::vector<VERTEX> m_Vertices;
     int m_Resolution;
 public:
+
+    Mesh() = default;
+    Mesh(std::vector<VERTEX> vertices, int resolution);
     void Debug() const;
 
     

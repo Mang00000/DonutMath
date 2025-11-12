@@ -7,6 +7,7 @@
 
 
 Settings::Settings(int argc, char* argv[])
+    : m_Height(20), m_Width(100), m_Resolution(32)
 {
     for (int i = 1; i < argc; i++)
     {
@@ -20,13 +21,11 @@ Settings::Settings(int argc, char* argv[])
             i++;
             m_Width = std::stoi(argv[i]);
         }
-    }
-
-    if (m_Height == 0 || m_Width == 0)
-    {
-        std::cout << "No Width or Height specified, using default size" << std::endl;
-        m_Width = 100;
-        m_Height = 20;
+        else if (strcmp(argv[i], "-r"))
+        {
+            i++;
+            m_Resolution = std::stoi(argv[i]);
+        }
     }
     
     m_Pixels = new char[m_Width * m_Height];
@@ -45,6 +44,11 @@ int Settings::GetHeight()
 int Settings::GetWidth()
 {
     return m_Width;
+}
+
+int Settings::GetResolution()
+{
+    return m_Resolution;
 }
 
 char* Settings::GetPixels()

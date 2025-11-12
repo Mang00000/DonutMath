@@ -4,7 +4,8 @@ class Settings
 {
     int m_Height;
     int m_Width;
-
+    int m_Resolution;
+        
     char* m_Pixels;
 public:
     Settings() = default;
@@ -13,6 +14,7 @@ public:
     
     int GetHeight();
     int GetWidth();
+    int GetResolution();
 
     char* GetPixels();
 };

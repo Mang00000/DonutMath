@@ -42,6 +42,11 @@ void Screen::SetCursorHome()
     return;
 }
 
+Settings Screen::GetSettings()
+{
+    return m_Settings;
+}
+
 void Screen::Display()
 {
     Clear();
