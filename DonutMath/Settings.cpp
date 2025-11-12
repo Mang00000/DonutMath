@@ -11,17 +11,17 @@ Settings::Settings(int argc, char* argv[])
 {
     for (int i = 1; i < argc; i++)
     {
-        if (strcmp(argv[i], "-h"))
-        {
-            i++;
-            m_Height = std::stoi(argv[i ]);
-        }
-        else if (strcmp(argv[i], "-w"))
+        if (strcmp(argv[i], "-w") == 0)
         {
             i++;
             m_Width = std::stoi(argv[i]);
         }
-        else if (strcmp(argv[i], "-r"))
+        else if (strcmp(argv[i], "-h") == 0)
+        {
+            i++;
+            m_Height = std::stoi(argv[i ]);
+        }
+        else if (strcmp(argv[i], "-r") == 0)
         {
             i++;
             m_Resolution = std::stoi(argv[i]);
