@@ -15,6 +15,8 @@ class Mesh
 {
     std::vector<VERTEX> m_Vertices;
     int m_Resolution;
+
+    void GenerateCirclePart(float radius, float angle);
 public:
 
     Mesh() = default;
@@ -23,6 +25,7 @@ public:
     void Debug() const;
 
     void GenerateSquare(float size);
-
-    
+    void GenerateRectangle(float width, float height);
+    void GenerateCircle(float radius);
+    void GenerateHalfCircle(float radius);
 };

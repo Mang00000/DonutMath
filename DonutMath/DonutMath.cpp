@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 
     Mesh mesh(screen.GetSettings().GetResolution());
 
-    mesh.GenerateSquare(4);
+    mesh.GenerateCircle(1);
 
     mesh.Debug();
     
