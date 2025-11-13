@@ -7,7 +7,8 @@
 
 
 Settings::Settings(int argc, char* argv[])
-    : m_Height(20), m_Width(100), m_Resolution(32)
+    : m_Height(20), m_Width(100), m_Resolution(32), m_ScreenBackground(' '), m_ScreenMeshProjection('X'),
+    m_ScreenPosition(9), m_ViewerPosition(10)
 {
     for (int i = 1; i < argc; i++)
     {
@@ -25,6 +26,26 @@ Settings::Settings(int argc, char* argv[])
         {
             i++;
             m_Resolution = std::stoi(argv[i]);
+        }
+        else if (strcmp(argv[i], "-b") == 0)
+        {
+            i++;
+            m_ScreenBackground = argv[i][0];
+        }
+        else if (strcmp(argv[i], "-p") == 0)
+        {
+            i++;
+            m_ScreenMeshProjection = argv[i][0];
+        }
+        else if (strcmp(argv[i], "-s") == 0)
+        {
+            i++;
+            m_ScreenPosition = std::stoi(argv[i]);
+        }
+        else if (strcmp(argv[i], "-v") == 0)
+        {
+            i++;
+            m_ViewerPosition = std::stoi(argv[i]);
         }
     }
     

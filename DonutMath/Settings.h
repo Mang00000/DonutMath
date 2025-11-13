@@ -7,6 +7,11 @@ class Settings
     int m_Resolution;
         
     char* m_Pixels;
+
+    char m_ScreenMeshProjection;
+    char m_ScreenBackground;
+    int m_ScreenPosition;
+    int m_ViewerPosition;
 public:
     Settings() = default;
     Settings(int argc, char* argv[]);

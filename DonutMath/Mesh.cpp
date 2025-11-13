@@ -24,6 +24,10 @@ void Mesh::Debug() const
     }
 }
 
+void Mesh::Display(Mesh const& mesh)
+{
+}
+
 void Mesh::GenerateSquare(float size)
 {
     VERTEX v;
@@ -56,12 +60,12 @@ void Mesh::GenerateRectangle(float width, float height)
 
 void Mesh::GenerateCircle(float radius)
 {
-    GenerateCirclePart(radius, 2 * M_PI);
+    GenerateCirclePart(radius, static_cast<float>(2 * M_PI));
 }
 
 void Mesh::GenerateHalfCircle(float radius)
 {
-    GenerateCirclePart(radius, M_PI);
+    GenerateCirclePart(radius, static_cast<float>(M_PI));
 }
 
 

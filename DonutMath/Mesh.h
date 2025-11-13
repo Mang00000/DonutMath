@@ -24,6 +24,8 @@ public:
     Mesh(std::vector<VERTEX> vertices, int resolution);
     void Debug() const;
 
+    void Display(Mesh const& mesh);
+
     void GenerateSquare(float size);
     void GenerateRectangle(float width, float height);
     void GenerateCircle(float radius);
