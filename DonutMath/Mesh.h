@@ -26,6 +26,8 @@ public:
 
     void Display(Mesh const& mesh);
 
+    std::vector<VERTEX>& GetVertices();
+
     void GenerateSquare(float size);
     void GenerateRectangle(float width, float height);
     void GenerateCircle(float radius);

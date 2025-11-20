@@ -49,11 +49,12 @@ Settings::Settings(int argc, char* argv[])
         }
     }
     
-    m_Pixels = new char[m_Width * m_Height];
+    m_Pixels = new Pixel[m_Width * m_Height];
 
     for (int i = 0; i < m_Width * m_Height; i++)
     {
-        m_Pixels[i] = '.';
+        m_Pixels[i].Char = '.';
+        m_Pixels[i].Depth = 0;
     }
 }
 
@@ -72,7 +73,22 @@ int Settings::GetResolution()
     return m_Resolution;
 }
 
-char* Settings::GetPixels()
+char Settings::GetScreenMeshProjection()
+{
+    return m_ScreenMeshProjection;
+}
+
+int Settings::GetScreenPos()
+{
+    return m_ScreenPosition;
+}
+
+int Settings::GetViewerPos()
+{
+    return m_ViewerPosition;
+}
+
+Pixel* Settings::GetPixels()
 {
     return m_Pixels;
 }

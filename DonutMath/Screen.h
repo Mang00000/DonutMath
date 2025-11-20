@@ -6,6 +6,9 @@ static const char CLEAR[] = "\033[2J";
 static const char INVISIBLE[] = "\033[?25l";
 static const char VISIBLE[] = "\033[?25h";
 
+
+class Mesh;
+
 class Screen
 {
     void ConfigConsole();
@@ -21,4 +24,8 @@ public:
     Settings GetSettings();
     
     void Display();
+
+    void DisplayMesh(Mesh& mesh, float x, float y, float z);
+
+    void SetPixel(float x, float y, float z, char newChar);
 };

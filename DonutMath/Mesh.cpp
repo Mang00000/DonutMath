@@ -28,6 +28,11 @@ void Mesh::Display(Mesh const& mesh)
 {
 }
 
+std::vector<VERTEX>& Mesh::GetVertices()
+{
+    return m_Vertices;
+}
+
 void Mesh::GenerateSquare(float size)
 {
     VERTEX v;

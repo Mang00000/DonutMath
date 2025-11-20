@@ -1,20 +1,18 @@
 #include "Mesh.h"
 #include "Screen.h"
 
-
-
-
 int main(int argc, char* argv[])
 {
     Screen screen(argc, argv);
 
-    screen.Display();
-
     Mesh mesh(screen.GetSettings().GetResolution());
 
-    mesh.GenerateCircle(1);
+    mesh.GenerateRectangle(5,4);
 
-    mesh.Debug();
+    screen.DisplayMesh(mesh, 0,0, 5);
+    
+
+    screen.Display();
     
     return 0;
 }

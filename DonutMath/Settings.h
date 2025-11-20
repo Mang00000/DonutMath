@@ -1,15 +1,22 @@
 ﻿#pragma once
 
+struct Pixel
+{
+    char Char;
+    float Depth;
+};
+
 class Settings
 {
     int m_Height;
     int m_Width;
     int m_Resolution;
         
-    char* m_Pixels;
+    Pixel* m_Pixels;
 
     char m_ScreenMeshProjection;
     char m_ScreenBackground;
+
     int m_ScreenPosition;
     int m_ViewerPosition;
 public:
@@ -21,5 +28,9 @@ public:
     int GetWidth();
     int GetResolution();
 
-    char* GetPixels();
+    char GetScreenMeshProjection();
+    int GetScreenPos();
+    int GetViewerPos();
+
+    Pixel* GetPixels();
 };
