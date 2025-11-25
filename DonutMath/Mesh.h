@@ -1,6 +1,14 @@
 ﻿#pragma once
 #include <vector>
 
+enum class Axis
+{
+    X,
+    Y,
+    Z
+};
+
+
 struct VERTEX
 {
     float x;
@@ -9,6 +17,7 @@ struct VERTEX
     VERTEX() = default;
     VERTEX(float _x, float _y, float _z) : x(_x), y(_y), z(_z) {}
     void Debug() const;
+    void Rotate(float angle, Axis axis);
 };
 
 class Mesh
