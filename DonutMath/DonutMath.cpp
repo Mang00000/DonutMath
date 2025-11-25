@@ -7,9 +7,12 @@ int main(int argc, char* argv[])
 
     Mesh mesh(screen.GetSettings().GetResolution());
 
-    mesh.GenerateRectangle(5,4);
-
-    screen.DisplayMesh(mesh, 0,0, 5);
+    //mesh.GenerateRectangle(5,2);
+    mesh.GenerateCircle(4);
+    //mesh.GenerateHalfCircle(2);
+    //mesh.GenerateSquare(3);
+    
+    screen.DisplayMesh(mesh, 10,5, 5);
     
 
     screen.Display();

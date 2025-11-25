@@ -1,8 +1,5 @@
 ﻿  DonutMath.cpp
-  Mesh.cpp
   Screen.cpp
-C:\Users\tzocca\Documents\GitHub\DonutMath\DonutMath\Screen.cpp(99,81): warning C4305: '=' : troncation de 'unsigned int' à 'float'
   Settings.cpp
   Génération de code en cours...
-  LINK : C:\Users\tzocca\Documents\GitHub\DonutMath\x64\Debug\DonutMath.exe introuvable ou non généré par la dernière édition de liens incrémentielle ; édition de liens complète en cours
   DonutMath.vcxproj -> C:\Users\tzocca\Documents\GitHub\DonutMath\x64\Debug\DonutMath.exe

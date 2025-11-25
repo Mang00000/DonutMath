@@ -75,7 +75,7 @@ void Screen::DisplayMesh(Mesh& mesh, float x, float y, float z)
     {
         VERTEX& CurrentVertex = vertices.at(i);
 
-        float worldX = CurrentVertex.x + x;
+        float worldX = (CurrentVertex.x + x) * 2;
         float  worldY = CurrentVertex.y + y;
         float worldZ = CurrentVertex.z + z;
 

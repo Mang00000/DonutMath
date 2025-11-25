@@ -83,7 +83,7 @@ void Mesh::GenerateCirclePart(float radius, float angle)
         for (int j = 0; j < m_Resolution; ++j)
         {
             v.x = ( radius * i) / (m_Resolution - 1)  * cos(angle * j  / m_Resolution);
-            v.y =   (radius * i) / (m_Resolution - 1) * sin(angle * j  / m_Resolution);
+            v.y =   (radius * i) / (m_Resolution - 1)  * sin(angle * j  / m_Resolution);
             v.z = 0;
             m_Vertices.push_back(v);
         }
