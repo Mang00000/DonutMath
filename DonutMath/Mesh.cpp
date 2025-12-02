@@ -7,6 +7,39 @@ void VERTEX::Debug() const
     std::cout << "X = " << x << "; Y = " << y << "; Z = " << z << '\n';
 }
 
+void VERTEX::Rotate(float angle, Axis axis)
+{
+    VERTEX tmp = *this;
+    float radAngle = angle * M_PI / 180;
+    
+    switch (axis)
+    {
+        case Axis::X:
+            {
+                tmp.x = x * 1 + y * 0 + z * 0;
+                tmp.y = x * 0 + y * cos(radAngle) - z * sin(radAngle);
+                tmp.z = x * 0 + y * sin(radAngle) - z * cos(radAngle);
+                break;
+            }
+        case Axis::Y:
+            {
+                tmp.x = x * cos(radAngle)    + y * 0 + z * sin(radAngle);
+                tmp.y = x * 0             + y * 1 + z * 0;
+                tmp.z = x * (-sin(radAngle)) + y * 0 + z * cos(radAngle);
+                break;
+            }
+        case Axis::Z:
+            {
+                tmp.x = x * cos(radAngle) - y * sin(radAngle) + z * 0;
+                tmp.y = x * sin(radAngle) + y * cos(radAngle) + z * 0;
+                tmp.z = x * 0 + y * 0 + z * 1;
+                break;
+            }
+    }
+
+    *this = tmp;
+}
+
 Mesh::Mesh(int resolution) : m_Resolution(resolution)
 {
 }
@@ -24,9 +57,14 @@ void Mesh::Debug() const
     }
 }
 
-void Mesh::Display(Mesh const& mesh)
+void Mesh::Rotate(float angle, Axis axis)
 {
+    for (int i = 0; i < m_Vertices.size(); ++i)
+    {
+        m_Vertices[i].Rotate(angle, axis);
+    }
 }
+
 
 std::vector<VERTEX>& Mesh::GetVertices()
 {
@@ -72,6 +110,7 @@ void Mesh::GenerateHalfCircle(float radius)
 {
     GenerateCirclePart(radius, static_cast<float>(M_PI));
 }
+
 
 
 
