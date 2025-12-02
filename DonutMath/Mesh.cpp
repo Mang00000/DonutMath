@@ -111,7 +111,23 @@ void Mesh::GenerateHalfCircle(float radius)
     GenerateCirclePart(radius, static_cast<float>(M_PI));
 }
 
+void Mesh::GenerateTorus(float majorRadius, float minorRadius)
+{
+    VERTEX v;
+    for (int i = 0; i < m_Resolution; ++i)
+    {
+        float angleY = 2 * M_PI * i / 180;
+        for (int j = 0; j < m_Resolution; ++j)
+        {
+            v.x = ( minorRadius * i) / (m_Resolution - 1)  * cos(2 * M_PI * j  / m_Resolution) + majorRadius;
+            v.y = (minorRadius * i) / (m_Resolution - 1)  * sin(2 * M_PI * j  / m_Resolution);
+            v.z = 0;
 
+            v.Rotate(angleY, Axis::Y);
+            m_Vertices.push_back(v);
+        }
+    }
+}
 
 
 void Mesh::GenerateCirclePart(float radius, float angle)

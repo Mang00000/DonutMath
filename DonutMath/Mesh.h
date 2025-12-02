@@ -41,5 +41,6 @@ public:
     void GenerateCircle(float radius);
     void GenerateHalfCircle(float radius);
 
+    void GenerateTorus(float majorRadius, float minorRadius);
 
 };
