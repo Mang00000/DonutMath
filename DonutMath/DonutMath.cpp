@@ -8,7 +8,8 @@ int main(int argc, char* argv[])
     Mesh mesh(screen.GetSettings().GetResolution());
 
     //mesh.GenerateRectangle(5,2);
-    mesh.GenerateCircle(4);
+    mesh.GenerateTorus(4.0f,0.9f);
+    //mesh.Rotate(45, Axis::Z);
     //mesh.GenerateHalfCircle(2);
     //mesh.GenerateSquare(3);
     

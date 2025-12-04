@@ -10,34 +10,28 @@ void VERTEX::Debug() const
 void VERTEX::Rotate(float angle, Axis axis)
 {
     VERTEX tmp = *this;
-    float radAngle = angle * M_PI / 180;
     
     switch (axis)
     {
         case Axis::X:
             {
-                tmp.x = x * 1 + y * 0 + z * 0;
-                tmp.y = x * 0 + y * cos(radAngle) - z * sin(radAngle);
-                tmp.z = x * 0 + y * sin(radAngle) - z * cos(radAngle);
+                y =  tmp.y * cos(angle) - tmp.z * sin(angle);
+                z =  tmp.y * sin(angle) - tmp.z * cos(angle);
                 break;
             }
         case Axis::Y:
             {
-                tmp.x = x * cos(radAngle)    + y * 0 + z * sin(radAngle);
-                tmp.y = x * 0             + y * 1 + z * 0;
-                tmp.z = x * (-sin(radAngle)) + y * 0 + z * cos(radAngle);
+                x = tmp.x * cos(angle) + tmp.z * sin(angle);
+                z = tmp.x * -sin(angle) + tmp.z * cos(angle);
                 break;
             }
         case Axis::Z:
             {
-                tmp.x = x * cos(radAngle) - y * sin(radAngle) + z * 0;
-                tmp.y = x * sin(radAngle) + y * cos(radAngle) + z * 0;
-                tmp.z = x * 0 + y * 0 + z * 1;
+                x = tmp.x * cos(angle) - tmp.y * sin(angle);
+                y = tmp.x * sin(angle) +tmp.y * cos(angle);
                 break;
             }
     }
-
-    *this = tmp;
 }
 
 Mesh::Mesh(int resolution) : m_Resolution(resolution)
@@ -59,9 +53,9 @@ void Mesh::Debug() const
 
 void Mesh::Rotate(float angle, Axis axis)
 {
-    for (int i = 0; i < m_Vertices.size(); ++i)
+    for (VERTEX& v : m_Vertices)
     {
-        m_Vertices[i].Rotate(angle, axis);
+        v.Rotate(angle, axis);
     }
 }
 
@@ -116,12 +110,15 @@ void Mesh::GenerateTorus(float majorRadius, float minorRadius)
     VERTEX v;
     for (int i = 0; i < m_Resolution; ++i)
     {
-        float angleY = 2 * M_PI * i / 180;
         for (int j = 0; j < m_Resolution; ++j)
         {
-            v.x = ( minorRadius * i) / (m_Resolution - 1)  * cos(2 * M_PI * j  / m_Resolution) + majorRadius;
-            v.y = (minorRadius * i) / (m_Resolution - 1)  * sin(2 * M_PI * j  / m_Resolution);
-            v.z = 0;
+            float angleY = 2.0f * M_PI * j / (m_Resolution - 1);
+            
+            v.x = minorRadius *  cos(2 * M_PI * j  / m_Resolution);
+            v.x += majorRadius;
+            v.y = 0;
+            v.z = sin(2 * M_PI * j  / m_Resolution);
+
 
             v.Rotate(angleY, Axis::Y);
             m_Vertices.push_back(v);
