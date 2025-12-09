@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
     //mesh.GenerateHalfCircle(2);
     //mesh.GenerateSquare(3);
     
-    screen.DisplayMesh(mesh, 10,5, 5);
+    screen.DisplayMesh(mesh, 10,8, 15);
     
 
     screen.Display();

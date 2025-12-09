@@ -112,15 +112,16 @@ void Mesh::GenerateTorus(float majorRadius, float minorRadius)
     {
         for (int j = 0; j < m_Resolution; ++j)
         {
-            float angleY = 2.0f * M_PI * j / (m_Resolution - 1);
+            float angleY = 2.0f * M_PI * i / (m_Resolution - 1);
             
-            v.x = minorRadius *  cos(2 * M_PI * j  / m_Resolution);
+            v.x = minorRadius * cos(2 * M_PI * j  / m_Resolution);
             v.x += majorRadius;
-            v.y = 0;
-            v.z = sin(2 * M_PI * j  / m_Resolution);
+            
+            v.y = minorRadius * sin(2 * M_PI * j  / m_Resolution) ;
+            v.z = 0;
 
 
-            v.Rotate(angleY, Axis::Y);
+            v.Rotate(angleY, Axis::Z);
             m_Vertices.push_back(v);
         }
     }
