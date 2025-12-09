@@ -50,7 +50,7 @@ Settings Screen::GetSettings()
 
 void Screen::Display()
 {
-    Clear();
+    //Clear();
     HideCursor();
     SetCursorHome();
     for (int i = 0; i < m_Settings.GetHeight(); ++i)
@@ -105,4 +105,15 @@ void Screen::SetPixel(float x, float y, float z, char newChar)
     CurrentPixel.Depth =  1 / z;
     
    CurrentPixel.Char = newChar;
+}
+
+void Screen::ResetScreen()
+{
+    for (int i = 0; i < m_Settings.GetHeight(); ++i)
+    {
+        for (int j = 0; j < m_Settings.GetWidth(); ++j)
+        {
+            m_Settings.GetPixels()[i * m_Settings.GetWidth() + j].Char = m_Settings.GetScreenBackground();
+        }
+    }
 }

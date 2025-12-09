@@ -28,4 +28,6 @@ public:
     void DisplayMesh(Mesh& mesh, float x, float y, float z);
 
     void SetPixel(float x, float y, float z, char newChar);
+
+    void ResetScreen();
 };

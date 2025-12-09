@@ -8,7 +8,7 @@
 
 Settings::Settings(int argc, char* argv[])
     : m_Height(20), m_Width(100), m_Resolution(32), m_ScreenBackground(' '), m_ScreenMeshProjection('X'),
-    m_ScreenPosition(9), m_ViewerPosition(10)
+    m_ScreenPosition(9), m_ViewerPosition(10), m_RotationX(0.02f), m_FrameDuration(100000)
 {
     for (int i = 1; i < argc; i++)
     {
@@ -47,13 +47,23 @@ Settings::Settings(int argc, char* argv[])
             i++;
             m_ViewerPosition = std::stoi(argv[i]);
         }
+        else if (strcmp(argv[i], "-x") == 0)
+        {
+            i++;
+            m_RotationX = std::stof(argv[i]);
+        }
+        else if (strcmp(argv[i], "-f") == 0)
+        {
+            i++;
+            m_FrameDuration = std::stoi(argv[i]);
+        }
     }
     
     m_Pixels = new Pixel[m_Width * m_Height];
 
     for (int i = 0; i < m_Width * m_Height; i++)
     {
-        m_Pixels[i].Char = '.';
+        m_Pixels[i].Char = m_ScreenBackground;
         m_Pixels[i].Depth = 0;
     }
 }
@@ -78,6 +88,11 @@ char Settings::GetScreenMeshProjection()
     return m_ScreenMeshProjection;
 }
 
+char Settings::GetScreenBackground()
+{
+    return m_ScreenBackground;
+}
+
 int Settings::GetScreenPos()
 {
     return m_ScreenPosition;
@@ -91,4 +106,14 @@ int Settings::GetViewerPos()
 Pixel* Settings::GetPixels()
 {
     return m_Pixels;
+}
+
+float Settings::GetRotationXPerFrame()
+{
+    return m_RotationX;
+}
+
+float Settings::GetFrameDuration()
+{
+    return m_FrameDuration;
 }

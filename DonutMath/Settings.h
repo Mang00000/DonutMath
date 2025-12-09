@@ -19,6 +19,9 @@ class Settings
 
     int m_ScreenPosition;
     int m_ViewerPosition;
+
+    float m_RotationX;
+    int m_FrameDuration;
 public:
     Settings() = default;
     Settings(int argc, char* argv[]);
@@ -29,8 +32,12 @@ public:
     int GetResolution();
 
     char GetScreenMeshProjection();
+    char GetScreenBackground();
     int GetScreenPos();
     int GetViewerPos();
 
     Pixel* GetPixels();
+
+    float GetRotationXPerFrame();
+    float GetFrameDuration();
 };
