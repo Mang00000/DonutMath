@@ -25,7 +25,7 @@ public:
     
     void Display();
 
-    void DisplayMesh(Mesh& mesh, float x, float y, float z);
+    void DisplayMesh(Mesh& mesh);
 
     void SetPixel(float x, float y, float z, char newChar);
 

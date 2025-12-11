@@ -16,13 +16,13 @@ void VERTEX::Rotate(float angle, Axis axis)
         case Axis::X:
             {
                 y =  tmp.y * cos(angle) - tmp.z * sin(angle);
-                z =  tmp.y * sin(angle) - tmp.z * cos(angle);
+                z =  tmp.y * sin(angle) + tmp.z * cos(angle);
                 break;
             }
         case Axis::Y:
             {
                 x = tmp.x * cos(angle) + tmp.z * sin(angle);
-                z = tmp.x * -sin(angle) + tmp.z * cos(angle);
+                z = tmp.x * -sin(angle) - tmp.z * cos(angle);
                 break;
             }
         case Axis::Z:
@@ -110,18 +110,15 @@ void Mesh::GenerateTorus(float majorRadius, float minorRadius)
     VERTEX v;
     for (int i = 0; i < m_Resolution; ++i)
     {
+        float angleY = (2.0f * M_PI * i) / ((float)m_Resolution - 1);
         for (int j = 0; j < m_Resolution; ++j)
         {
-            float angleY = 2.0f * M_PI * i / (m_Resolution - 1);
-            
-            v.x = minorRadius * cos(2 * M_PI * j  / m_Resolution);
-            v.x += majorRadius;
-            
-            v.y = minorRadius * sin(2 * M_PI * j  / m_Resolution) ;
+            float angleZ = 2.0f * M_PI * j  / ((float)m_Resolution - 1);
+            v.x = majorRadius + minorRadius * cos(angleZ);
+            v.y = minorRadius * sin(angleZ) ;
             v.z = 0;
-
-
-            v.Rotate(angleY, Axis::Z);
+            
+            v.Rotate(angleY, Axis::Y);
             m_Vertices.push_back(v);
         }
     }
