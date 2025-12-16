@@ -64,72 +64,50 @@ void Screen::Display()
     ShowCursor();
 }
 
-void Screen::DisplayMesh(Mesh& mesh)
+void Screen::DisplayMesh(Mesh& mesh, float x, float y, float z)
 {
     std::vector<VERTEX>& vertices = mesh.GetVertices();
-    
+
     float ScreenPos = m_Settings.GetScreenPos();
-    float ViewerPos = 3.3333f;
+    float ViewerPos = m_Settings.GetViewerPos();
 
     for (int i = 0; i < vertices.size(); ++i)
     {
-        VERTEX& CurrentVertex = vertices.at(i);
+        VERTEX CurrentVertex = vertices.at(i);
 
+        float worldX = CurrentVertex.x + x;
+        float worldY = CurrentVertex.y + y;
+        float worldZ = CurrentVertex.z + z;
         
-        CurrentVertex.z += ViewerPos;
-        CurrentVertex.x = ScreenPos * CurrentVertex.x / CurrentVertex.z;
-        CurrentVertex.y = ScreenPos * CurrentVertex.y / CurrentVertex.z / 2.f;
+        // worldZ += ViewerPos;
+        // worldX = ScreenPos * worldX / worldZ;
+        // worldY = ScreenPos * worldY / worldZ / 2.f;
 
-        CurrentVertex.x += m_Settings.GetWidth() / 2;
-        CurrentVertex.y += m_Settings.GetHeight() / 2;
+        worldY *= 0.50f;
+
+        worldX += m_Settings.GetWidth() / 2;
+        worldY += m_Settings.GetHeight() / 2;
 
 
-
-        int u = std::round(CurrentVertex.x);
-        int v = std::round(CurrentVertex.y);
-        float ooz = 1.f / CurrentVertex.z;
-        
-        
-        if(ooz < m_Settings.GetPixels()[v * m_Settings.GetWidth() + u].Depth)
-        {
-            if (u < 0 || v < 0 || u > m_Settings.GetWidth() || v > m_Settings.GetHeight())
-            {
-                std::cout << "PIXEL OUT OF BOUND" << std::endl;
-                return;
-            }
-            m_Settings.GetPixels()[v * m_Settings.GetWidth() + u].Depth = ooz;
-            m_Settings.GetPixels()[v * m_Settings.GetWidth() + u].Char = m_Settings.GetScreenMeshProjection();
-        }
-
-        
-        // float worldX = (CurrentVertex.x + x) * 2;
-        // float  worldY = CurrentVertex.y + y;
-        // float worldZ = CurrentVertex.z + z;
-        //
-        // float x = worldX  * ScreenPos / worldZ;
-        // float y = worldY  * ScreenPos / worldZ;
-        // float z = worldZ;
-        
-
-        //SetPixel(CurrentVertex.x, CurrentVertex.y, CurrentVertex.z, m_Settings.GetScreenMeshProjection());
+        SetPixel(worldX, worldY, worldZ, m_Settings.GetScreenMeshProjection(), CurrentVertex.nx, CurrentVertex.ny, CurrentVertex.nz);
     }
    
 }
 
-void Screen::SetPixel(float x, float y, float z, char newChar)
+void Screen::SetPixel(float x, float y, float z, char newChar, float nx, float ny, float nz)
 {
     if (x < 0 || y < 0 || x > m_Settings.GetWidth() || y > m_Settings.GetHeight())
     {
-        std::cout << "PIXEL OUT OF BOUND" << std::endl;
+        //std::cout << "PIXEL OUT OF BOUND" << std::endl;
         return;
     }
 
     Pixel& CurrentPixel = m_Settings.GetPixels()[(int)y * m_Settings.GetWidth() + (int)x];
     
-    if (CurrentPixel.Depth > 1/z)
+    if (CurrentPixel.Depth < 1 / z)
     {
         CurrentPixel.Depth =  1 / z;
-        CurrentPixel.Char = newChar;
+        CurrentPixel.Char = ComputeLight(ny);
     }
 }
 
@@ -140,7 +118,18 @@ void Screen::ResetScreen()
         for (int j = 0; j < m_Settings.GetWidth(); ++j)
         {
             m_Settings.GetPixels()[i * m_Settings.GetWidth() + j].Char = m_Settings.GetScreenBackground();
-            m_Settings.GetPixels()[i * m_Settings.GetWidth() + j].Depth =  INFINITE;
+            m_Settings.GetPixels()[i * m_Settings.GetWidth() + j].Depth = -2147483647;
         }
     }
+}
+
+char Screen::ComputeLight(float _ny)
+{
+    _ny = (-_ny + 1) * 0.5f;
+
+    int index = _ny * 12;
+    if (index == 12)
+        index = 11;
+    
+    return LIGHTCHAR[index]; 
 }

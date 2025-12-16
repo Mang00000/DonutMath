@@ -10,25 +10,37 @@ void VERTEX::Debug() const
 void VERTEX::Rotate(float angle, Axis axis)
 {
     VERTEX tmp = *this;
+
+    float c = cos(angle);
+    float s = sin(angle);
     
     switch (axis)
     {
         case Axis::X:
             {
-                y =  tmp.y * cos(angle) - tmp.z * sin(angle);
-                z =  tmp.y * sin(angle) + tmp.z * cos(angle);
+                y =  tmp.y * c - tmp.z * s;
+                z =  tmp.y * s + tmp.z * c;
+
+                ny =  tmp.ny * c - tmp.nz * s;
+                nz =  tmp.ny * s + tmp.nz * c;
                 break;
             }
         case Axis::Y:
             {
-                x = tmp.x * cos(angle) + tmp.z * sin(angle);
-                z = tmp.x * -sin(angle) - tmp.z * cos(angle);
+                x = tmp.x * c - tmp.z * s;
+                z = tmp.x * s + tmp.z * c;
+
+                nx = tmp.nx * c - tmp.nz * s;
+                nz = tmp.nx * s + tmp.nz * c;
                 break;
             }
         case Axis::Z:
             {
-                x = tmp.x * cos(angle) - tmp.y * sin(angle);
-                y = tmp.x * sin(angle) +tmp.y * cos(angle);
+                x = tmp.x * c - tmp.y * s;
+                y = tmp.x * s + tmp.y * c;
+
+                nx = tmp.nx * c - tmp.ny * s;
+                ny = tmp.ny * s + tmp.ny * c;
                 break;
             }
     }
@@ -110,15 +122,25 @@ void Mesh::GenerateTorus(float majorRadius, float minorRadius)
     VERTEX v;
     for (int i = 0; i < m_Resolution; ++i)
     {
-        float angleY = (2.0f * M_PI * i) / ((float)m_Resolution - 1);
+        float theta = 2.0f * M_PI * i / ((float)m_Resolution - 1);
         for (int j = 0; j < m_Resolution; ++j)
         {
-            float angleZ = 2.0f * M_PI * j  / ((float)m_Resolution - 1);
-            v.x = majorRadius + minorRadius * cos(angleZ);
-            v.y = minorRadius * sin(angleZ) ;
-            v.z = 0;
+            float phi = 2.0f * M_PI * j  / ((float)m_Resolution - 1);
+
+            v.x = (majorRadius + minorRadius * cos(phi)) * cos(theta);
+            v.y = (majorRadius + minorRadius * cos(phi)) * sin(theta);
+            v.z = minorRadius * sin(phi);
+
+            v.nx = v.x - (cos(theta) * majorRadius);
+            v.ny = v.y - (sin(theta) * majorRadius);
+            v.nz = v.z;
+
+            float lenght = 1 / sqrt(v.nx * v.nx + v.ny * v.ny + v.nz * v.nz);
+
+            v.nx *= lenght;
+            v.ny *= lenght;
+            v.nz *= lenght;
             
-            v.Rotate(angleY, Axis::Y);
             m_Vertices.push_back(v);
         }
     }

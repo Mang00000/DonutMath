@@ -14,8 +14,13 @@ struct VERTEX
     float x;
     float y;
     float z;
+
+    float nx;
+    float ny;
+    float nz;
+    
     VERTEX() = default;
-    VERTEX(float _x, float _y, float _z) : x(_x), y(_y), z(_z) {}
+    VERTEX(float _x, float _y, float _z) : x(_x), y(_y), z(_z), nx(0), ny(0), nz(0) {}
     void Debug() const;
     void Rotate(float angle, Axis axis);
 };

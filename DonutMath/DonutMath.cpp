@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
     Mesh mesh(screen.GetSettings().GetResolution());
 
     //mesh.GenerateRectangle(5,2);
-    mesh.GenerateTorus(15.0f,2.f);
+    mesh.GenerateTorus(15.f,4.f);
     //mesh.Rotate(45, Axis::Z);
     //mesh.GenerateHalfCircle(2);
     //mesh.GenerateSquare(17);
@@ -21,12 +21,12 @@ int main(int argc, char* argv[])
         screen.ResetScreen();
         screen.SetCursorHome();
         
-        //mesh.Rotate(screen.GetSettings().GetRotationXPerFrame(), Axis::X);
+        mesh.Rotate(screen.GetSettings().GetRotationXPerFrame(), Axis::X);
 
-        screen.DisplayMesh(mesh);
+        screen.DisplayMesh(mesh, 0, 0,0);
 
         screen.Display();
-        Sleep(10);
+        //Sleep(10);
     }
 
     

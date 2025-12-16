@@ -7,6 +7,8 @@ static const char INVISIBLE[] = "\033[?25l";
 static const char VISIBLE[] = "\033[?25h";
 
 
+static const char LIGHTCHAR[13] = ".,-~:;=!*#$@";
+
 class Mesh;
 
 class Screen
@@ -25,9 +27,11 @@ public:
     
     void Display();
 
-    void DisplayMesh(Mesh& mesh);
+    void DisplayMesh(Mesh& mesh, float x, float y, float z);
 
-    void SetPixel(float x, float y, float z, char newChar);
+    void SetPixel(float x, float y, float z, char newChar, float nx, float ny, float nz);
 
     void ResetScreen();
+
+    char ComputeLight(float _ny);
 };
