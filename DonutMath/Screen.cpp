@@ -107,7 +107,7 @@ void Screen::SetPixel(float x, float y, float z, char newChar, float nx, float n
     if (CurrentPixel.Depth < 1 / z)
     {
         CurrentPixel.Depth =  1 / z;
-        CurrentPixel.Char = ComputeLight(ny);
+        CurrentPixel.Char = ComputeChar(ComputeLight(nx,ny,nz));
     }
 }
 
@@ -123,11 +123,18 @@ void Screen::ResetScreen()
     }
 }
 
-char Screen::ComputeLight(float _ny)
+float Screen::ComputeLight(float _nx, float _ny, float _nz)
 {
-    _ny = (-_ny + 1) * 0.5f;
+    VERTEX light = {m_Settings.GetLightDirectionX(), m_Settings.GetLightDirectionY(), m_Settings.GetLightDirectionZ()};
+    
+    return _nx * light.x + _ny * light.y + _nz * light.z;
+}
 
-    int index = _ny * 12;
+char Screen::ComputeChar(float dotProd)
+{
+    dotProd = (-dotProd + 1) * 0.5f;
+
+    int index = dotProd * 12;
     if (index == 12)
         index = 11;
     

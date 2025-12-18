@@ -22,6 +22,10 @@ class Settings
 
     float m_RotationX;
     int m_FrameDuration;
+
+    float m_LightDirectionX;
+    float m_LightDirectionY;
+    float m_LightDirectionZ;
 public:
     Settings() = default;
     Settings(int argc, char* argv[]);
@@ -40,4 +44,8 @@ public:
 
     float GetRotationXPerFrame();
     float GetFrameDuration();
+
+    float GetLightDirectionX();
+    float GetLightDirectionY();
+    float GetLightDirectionZ();
 };

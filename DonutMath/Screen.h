@@ -33,5 +33,7 @@ public:
 
     void ResetScreen();
 
-    char ComputeLight(float _ny);
+    float ComputeLight(float _nx, float _ny ,float _nz);
+
+    char ComputeChar(float dotProd);
 };

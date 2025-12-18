@@ -8,7 +8,7 @@
 
 Settings::Settings(int argc, char* argv[])
     : m_Height(20), m_Width(100), m_Resolution(32), m_ScreenBackground(' '), m_ScreenMeshProjection('X'),
-    m_ScreenPosition(9), m_ViewerPosition(10), m_RotationX(0.02f), m_FrameDuration(100000)
+    m_ScreenPosition(9), m_ViewerPosition(10), m_RotationX(0.02f), m_FrameDuration(100000), m_LightDirectionX(0.f), m_LightDirectionY(1.f), m_LightDirectionZ(0)
 {
     for (int i = 1; i < argc; i++)
     {
@@ -57,6 +57,22 @@ Settings::Settings(int argc, char* argv[])
             i++;
             m_FrameDuration = std::stoi(argv[i]);
         }
+        else if (strcmp(argv[i], "-lx") == 0)
+        {
+            i++;
+            m_LightDirectionX = std::stof(argv[i]);
+        }
+        else if (strcmp(argv[i], "-ly") == 0)
+        {
+            i++;
+            m_LightDirectionY = std::stof(argv[i]);
+        }
+        else if (strcmp(argv[i], "-lz") == 0)
+        {
+            i++;
+            m_LightDirectionZ = std::stof(argv[i]);
+        }
+        
     }
     
     m_Pixels = new Pixel[m_Width * m_Height];
@@ -116,4 +132,19 @@ float Settings::GetRotationXPerFrame()
 float Settings::GetFrameDuration()
 {
     return m_FrameDuration;
+}
+
+float Settings::GetLightDirectionX()
+{
+    return m_LightDirectionX;
+}
+
+float Settings::GetLightDirectionY()
+{
+    return m_LightDirectionY;
+}
+
+float Settings::GetLightDirectionZ()
+{
+    return m_LightDirectionZ;
 }
