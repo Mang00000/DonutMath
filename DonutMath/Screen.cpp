@@ -74,9 +74,6 @@ void Screen::DisplayMesh(Mesh& mesh, float x, float y, float z)
 {
     std::vector<VERTEX>& vertices = mesh.GetVertices();
 
-    float ScreenPos = Settings::ScreenPosition;
-    float ViewerPos = Settings::ViewerPosition;
-
     for (int i = 0; i < vertices.size(); ++i)
     {
         VERTEX CurrentVertex = vertices.at(i);
