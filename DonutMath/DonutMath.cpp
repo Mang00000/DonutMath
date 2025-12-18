@@ -5,10 +5,11 @@
 
 int main(int argc, char* argv[])
 {
+    Settings::ParseArguments(argc, argv);
     bool running = true;
-    Screen screen(argc, argv);
+    Screen screen;
 
-    Mesh mesh(screen.GetSettings().GetResolution());
+    Mesh mesh(Settings::Resolution);
 
     //mesh.GenerateRectangle(5,2);
     mesh.GenerateTorus(15.f,4.f);
@@ -21,7 +22,7 @@ int main(int argc, char* argv[])
         screen.ResetScreen();
         screen.SetCursorHome();
         
-        mesh.Rotate(screen.GetSettings().GetRotationXPerFrame(), Axis::X);
+        mesh.Rotate(Settings::RotationX, Axis::X);
 
         screen.DisplayMesh(mesh, 0, 0,0);
 

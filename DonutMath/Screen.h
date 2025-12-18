@@ -9,6 +9,13 @@ static const char VISIBLE[] = "\033[?25h";
 
 static const char LIGHTCHAR[13] = ".,-~:;=!*#$@";
 
+struct Pixel
+{
+    char Char;
+    float Depth;
+};
+
+
 class Mesh;
 
 class Screen
@@ -18,8 +25,7 @@ class Screen
 
     Pixel* m_Pixels;
 public:
-    Screen() = default;
-    Screen(int argc, char* argv[]);
+    Screen();
     void Clear();
     void HideCursor();
     void ShowCursor();
@@ -31,7 +37,7 @@ public:
 
     void DisplayMesh(Mesh& mesh, float x, float y, float z);
 
-    void SetPixel(float x, float y, float z, char newChar, float nx, float ny, float nz);
+    void SetPixel(float x, float y, float z, float nx, float ny, float nz);
 
     void ResetScreen();
 

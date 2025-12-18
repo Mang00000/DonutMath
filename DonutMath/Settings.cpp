@@ -5,133 +5,90 @@
 #include <string>
 
 
+int     Settings::Height = 20;
+int     Settings::Width = 100;
+int     Settings::Resolution = 32;
 
-Settings::Settings(int argc, char* argv[])
-    : m_Height(20), m_Width(100), m_Resolution(32), m_ScreenBackground(' '), m_ScreenMeshProjection('X'),
-    m_ScreenPosition(9), m_ViewerPosition(10), m_RotationX(0.02f), m_FrameDuration(100000), m_LightDirectionX(0.f), m_LightDirectionY(1.f), m_LightDirectionZ(0)
+char    Settings::ScreenMeshProjection = 'X';
+char    Settings::ScreenBackground = ' ';
+
+int     Settings::ScreenPosition = 9;
+int     Settings::ViewerPosition = 10;
+
+float   Settings::RotationX = 0.02f;
+int     Settings::FrameDuration = 30;
+
+float   Settings::LightDirectionX = 0.f;
+float   Settings::LightDirectionY = 1.f;
+float   Settings::LightDirectionZ = 0.f;
+
+
+void Settings::ParseArguments(int argc, char* argv[])
 {
+
     for (int i = 1; i < argc; i++)
     {
         if (strcmp(argv[i], "-w") == 0)
         {
             i++;
-            m_Width = std::stoi(argv[i]);
+            Width = std::stoi(argv[i]);
         }
         else if (strcmp(argv[i], "-h") == 0)
         {
             i++;
-            m_Height = std::stoi(argv[i ]);
+            Height = std::stoi(argv[i ]);
         }
         else if (strcmp(argv[i], "-r") == 0)
         {
             i++;
-            m_Resolution = std::stoi(argv[i]);
+            Resolution = std::stoi(argv[i]);
         }
         else if (strcmp(argv[i], "-b") == 0)
         {
             i++;
-            m_ScreenBackground = argv[i][0];
+            ScreenBackground = argv[i][0];
         }
         else if (strcmp(argv[i], "-p") == 0)
         {
             i++;
-            m_ScreenMeshProjection = argv[i][0];
+            ScreenMeshProjection = argv[i][0];
         }
         else if (strcmp(argv[i], "-s") == 0)
         {
             i++;
-            m_ScreenPosition = std::stoi(argv[i]);
+            ScreenPosition = std::stoi(argv[i]);
         }
         else if (strcmp(argv[i], "-v") == 0)
         {
             i++;
-            m_ViewerPosition = std::stoi(argv[i]);
+            ViewerPosition = std::stoi(argv[i]);
         }
         else if (strcmp(argv[i], "-x") == 0)
         {
             i++;
-            m_RotationX = std::stof(argv[i]);
+            RotationX = std::stof(argv[i]);
         }
         else if (strcmp(argv[i], "-f") == 0)
         {
             i++;
-            m_FrameDuration = std::stoi(argv[i]);
+            FrameDuration = std::stoi(argv[i]);
         }
         else if (strcmp(argv[i], "-lx") == 0)
         {
             i++;
-            m_LightDirectionX = std::stof(argv[i]);
+            LightDirectionX = std::stof(argv[i]);
         }
         else if (strcmp(argv[i], "-ly") == 0)
         {
             i++;
-            m_LightDirectionY = std::stof(argv[i]);
+            LightDirectionY = std::stof(argv[i]);
         }
         else if (strcmp(argv[i], "-lz") == 0)
         {
             i++;
-            m_LightDirectionZ = std::stof(argv[i]);
+            LightDirectionZ = std::stof(argv[i]);
         }
         
     }
 }
 
-int Settings::GetHeight()
-{
-    return m_Height;
-}
-
-int Settings::GetWidth()
-{
-    return m_Width;
-}
-
-int Settings::GetResolution()
-{
-    return m_Resolution;
-}
-
-char Settings::GetScreenMeshProjection()
-{
-    return m_ScreenMeshProjection;
-}
-
-char Settings::GetScreenBackground()
-{
-    return m_ScreenBackground;
-}
-
-int Settings::GetScreenPos()
-{
-    return m_ScreenPosition;
-}
-
-int Settings::GetViewerPos()
-{
-    return m_ViewerPosition;
-}
-
-float Settings::GetRotationXPerFrame()
-{
-    return m_RotationX;
-}
-
-float Settings::GetFrameDuration()
-{
-    return m_FrameDuration;
-}
-
-float Settings::GetLightDirectionX()
-{
-    return m_LightDirectionX;
-}
-
-float Settings::GetLightDirectionY()
-{
-    return m_LightDirectionY;
-}
-
-float Settings::GetLightDirectionZ()
-{
-    return m_LightDirectionZ;
-}
