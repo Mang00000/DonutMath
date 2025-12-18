@@ -15,6 +15,8 @@ class Screen
 {
     void ConfigConsole();
     Settings m_Settings;
+
+    Pixel* m_Pixels;
 public:
     Screen() = default;
     Screen(int argc, char* argv[]);

@@ -74,14 +74,6 @@ Settings::Settings(int argc, char* argv[])
         }
         
     }
-    
-    m_Pixels = new Pixel[m_Width * m_Height];
-
-    for (int i = 0; i < m_Width * m_Height; i++)
-    {
-        m_Pixels[i].Char = m_ScreenBackground;
-        m_Pixels[i].Depth = 0;
-    }
 }
 
 int Settings::GetHeight()
@@ -117,11 +109,6 @@ int Settings::GetScreenPos()
 int Settings::GetViewerPos()
 {
     return m_ViewerPosition;
-}
-
-Pixel* Settings::GetPixels()
-{
-    return m_Pixels;
 }
 
 float Settings::GetRotationXPerFrame()

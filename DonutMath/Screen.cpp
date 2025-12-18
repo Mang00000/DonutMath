@@ -17,6 +17,14 @@ Screen::Screen(int argc, char* argv[])
 {
     ConfigConsole();
     m_Settings = Settings(argc, argv);
+
+    m_Pixels = new Pixel[m_Settings.GetWidth() * m_Settings.GetHeight()];
+
+    for (int i = 0; i < m_Settings.GetWidth() * m_Settings.GetHeight(); i++)
+    {
+        m_Pixels[i].Char = m_Settings.GetScreenBackground();
+        m_Pixels[i].Depth = 0;
+    }
 }
 
 void Screen::Clear()
@@ -57,7 +65,7 @@ void Screen::Display()
     {
         for (int j = 0; j < m_Settings.GetWidth(); ++j)
         {
-            std::cout << m_Settings.GetPixels()[i * m_Settings.GetWidth() + j].Char;
+            std::cout << m_Pixels[i * m_Settings.GetWidth() + j].Char;
         }
         std::cout << '\n';
     }
@@ -102,7 +110,7 @@ void Screen::SetPixel(float x, float y, float z, char newChar, float nx, float n
         return;
     }
 
-    Pixel& CurrentPixel = m_Settings.GetPixels()[(int)y * m_Settings.GetWidth() + (int)x];
+    Pixel& CurrentPixel = m_Pixels[(int)y * m_Settings.GetWidth() + (int)x];
     
     if (CurrentPixel.Depth < 1 / z)
     {
@@ -117,8 +125,8 @@ void Screen::ResetScreen()
     {
         for (int j = 0; j < m_Settings.GetWidth(); ++j)
         {
-            m_Settings.GetPixels()[i * m_Settings.GetWidth() + j].Char = m_Settings.GetScreenBackground();
-            m_Settings.GetPixels()[i * m_Settings.GetWidth() + j].Depth = -2147483647;
+            m_Pixels[i * m_Settings.GetWidth() + j].Char = m_Settings.GetScreenBackground();
+            m_Pixels[i * m_Settings.GetWidth() + j].Depth = -2147483647;
         }
     }
 }

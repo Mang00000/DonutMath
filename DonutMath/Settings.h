@@ -11,9 +11,7 @@ class Settings
     int m_Height;
     int m_Width;
     int m_Resolution;
-        
-    Pixel* m_Pixels;
-
+    
     char m_ScreenMeshProjection;
     char m_ScreenBackground;
 
@@ -29,7 +27,6 @@ class Settings
 public:
     Settings() = default;
     Settings(int argc, char* argv[]);
-
     
     int GetHeight();
     int GetWidth();
@@ -39,9 +36,7 @@ public:
     char GetScreenBackground();
     int GetScreenPos();
     int GetViewerPos();
-
-    Pixel* GetPixels();
-
+    
     float GetRotationXPerFrame();
     float GetFrameDuration();
 
