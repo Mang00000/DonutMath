@@ -1,11 +1,5 @@
 # 3D Donut Console Renderer
 
-### THIS PROJECT WAS MADE BY ONE PERSON
-### CONTRIBUTOR:
-- [Your Name]
-
----
-
 ### General Information  
 **3D Donut Console Renderer** is a small C++ console project that renders a rotating 3D donut using ASCII characters.  
 The project is inspired by **A1k0n's donut** from the internet and demonstrates basic **3D rotation, projection, and shading** in a terminal window.  
@@ -21,16 +15,24 @@ The project is inspired by **A1k0n's donut** from the internet and demonstrates 
 
 #### Prerequisites
 - Visual Studio 2022 (or compatible)
-- CMake >= 3.20 (optional, can also compile directly)
 - Windows / Linux / macOS console
 
-#### Steps
+### Steps
 1. Clone the repository:
-git clone <your-repo-url>
-2. Compile:
-g++ -std=c++20 main.cpp -o Donut
-3. Run:
-./Donut
+```
+git clone https://github.com/tiagzoc/DonutMath.git
+```
+2. Go to the .exe file :
+> Note: you can find it in the x64/Debug folder.
+```
+cd x64/Debug
+```
+3. Open a cmd and write this command:
+> Note: The list of all possible parameters is after this part.
+```
+.\DonutMath.exe -r 128
+```
+> Note: You can also open the .sln with an IDE and modify the running parameters.
 
 > The donut will continuously rotate in the terminal until you close the window.
 
@@ -55,11 +57,5 @@ g++ -std=c++20 main.cpp -o Donut
 
 ### Possible Improvements
 - Add color support in the console.
-- Support resizing of the donut or adjustable rotation speed.
-- Implement double buffering to reduce flickering.
 - Expand to render other 3D shapes.
 
----
-
-### License
-Personal project – 2025

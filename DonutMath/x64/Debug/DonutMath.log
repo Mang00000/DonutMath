@@ -1,5 +1,10 @@
 ﻿  DonutMath.cpp
+  Mesh.cpp
+D:\Projets\Github\DonutMath\DonutMath\Mesh.cpp(125,21): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+D:\Projets\Github\DonutMath\DonutMath\Mesh.cpp(128,23): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
   Screen.cpp
+D:\Projets\Github\DonutMath\DonutMath\Screen.cpp(124,55): warning C4305: '=' : troncation de 'int' à 'float'
+D:\Projets\Github\DonutMath\DonutMath\Screen.cpp(140,15): warning C4244: 'initialisation' : conversion de 'float' en 'int', perte possible de données
   Settings.cpp
   Génération de code en cours...
-  DonutMath.vcxproj -> C:\Users\tzocca\Documents\GitHub\DonutMath\x64\Debug\DonutMath.exe
+  DonutMath.vcxproj -> D:\Projets\Github\DonutMath\x64\Debug\DonutMath.exe
